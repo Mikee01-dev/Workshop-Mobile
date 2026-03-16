@@ -117,7 +117,7 @@ class _ModernMahasiswaAktifCardState extends State<ModernMahasiswaAktifCard>
 
                   child: Center(
                     child: Text(
-                      widget.mahasiswa.nama.substring(0,1).toUpperCase(),
+                      widget.mahasiswa.title.substring(0,1).toUpperCase(),
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
@@ -136,29 +136,18 @@ class _ModernMahasiswaAktifCardState extends State<ModernMahasiswaAktifCard>
                     children: [
 
                       Text(
-                        widget.mahasiswa.nama,
+                        widget.mahasiswa.title,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
                       ),
 
-                      const SizedBox(height: 8),
-
-                      _buildInfoRow(Icons.badge_outlined,
-                          "NIM: ${widget.mahasiswa.nim}"),
-
                       const SizedBox(height: 4),
 
-                      _buildInfoRow(Icons.school_outlined,
-                          "Semester: ${widget.mahasiswa.semester}"),
-
-                      const SizedBox(height: 4),
-
-                      _buildInfoRow(Icons.school_outlined,
-                          "IPK: ${widget.mahasiswa.ipk}"),
+                      _buildInfoRow(Icons.article_outlined,
+                          widget.mahasiswa.body,
+                      )
                     ],
                   ),
                 ),

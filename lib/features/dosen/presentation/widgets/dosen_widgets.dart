@@ -117,7 +117,7 @@ class _ModernDosenCardState extends State<ModernDosenCard>
 
                   child: Center(
                     child: Text(
-                      widget.dosen.nama.substring(0,1).toUpperCase(),
+                      widget.dosen.name.substring(0,1).toUpperCase(),
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
@@ -136,7 +136,7 @@ class _ModernDosenCardState extends State<ModernDosenCard>
                     children: [
 
                       Text(
-                        widget.dosen.nama,
+                        widget.dosen.name,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -147,8 +147,8 @@ class _ModernDosenCardState extends State<ModernDosenCard>
 
                       const SizedBox(height: 8),
 
-                      _buildInfoRow(Icons.badge_outlined,
-                          "NIP: ${widget.dosen.nip}"),
+                      _buildInfoRow(Icons.account_circle_outlined,
+                          "@${widget.dosen.username}"),
 
                       const SizedBox(height: 4),
 
@@ -157,8 +157,9 @@ class _ModernDosenCardState extends State<ModernDosenCard>
 
                       const SizedBox(height: 4),
 
-                      _buildInfoRow(Icons.school_outlined,
-                          widget.dosen.jurusan),
+                      _buildInfoRow(Icons.location_on_outlined,
+                          '${widget.dosen.address.street}, ${widget.dosen.address.city}',
+                      )
                     ],
                   ),
                 ),

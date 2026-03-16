@@ -3,7 +3,7 @@ import 'package:aplikasi_mobile/features/mahasiswa_aktif/data/models/mahasiswa_a
 import 'package:aplikasi_mobile/features/mahasiswa_aktif/data/repositories/mahasiswa_aktif_repository.dart';
 
 /// Repository Provider
-final mahasiswaAktifRepositoryProvider = Provider<MahasiswaAktifRepository>((ref) {
+final mahasiswaRepositoryProvider = Provider<MahasiswaAktifRepository>((ref) {
   return MahasiswaAktifRepository();
 });
 
@@ -13,17 +13,17 @@ class MahasiswaAktifNotifier extends StateNotifier<AsyncValue<List<MahasiswaAkti
   final MahasiswaAktifRepository _repository;
 
   MahasiswaAktifNotifier(this._repository) : super(const AsyncValue.loading()) {
-    loadMahasiswaList();
+    loadMahasiswaAktifList();
   }
 
   /// Load data mahasiswa
-  Future<void> loadMahasiswaList() async {
+  Future<void> loadMahasiswaAktifList() async {
 
     state = const AsyncValue.loading();
 
     try {
 
-      final data = await _repository.getMahasiswaList();
+      final data = await _repository.getMahasiswaAktifList();
 
       state = AsyncValue.data(data);
 
@@ -36,7 +36,7 @@ class MahasiswaAktifNotifier extends StateNotifier<AsyncValue<List<MahasiswaAkti
 
   /// Refresh data
   Future<void> refresh() async {
-    await loadMahasiswaList();
+    await loadMahasiswaAktifList();
   }
 }
 
@@ -46,7 +46,7 @@ StateNotifierProvider.autoDispose<
     MahasiswaAktifNotifier,
     AsyncValue<List<MahasiswaAktifModel>>>((ref) {
 
-  final repository = ref.watch(mahasiswaAktifRepositoryProvider);
+  final repository = ref.watch(mahasiswaRepositoryProvider);
 
   return MahasiswaAktifNotifier(repository);
 });

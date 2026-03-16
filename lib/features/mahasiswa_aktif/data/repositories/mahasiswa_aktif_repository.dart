@@ -1,34 +1,20 @@
-import 'package:aplikasi_mobile/features/mahasiswa_aktif/data/models/mahasiswa_aktif_model.dart';
+import 'package:dio/dio.dart';
+import '../models/mahasiswa_aktif_model.dart';
 
 class MahasiswaAktifRepository {
+  final Dio _dio = Dio();
 
-  Future<List<MahasiswaAktifModel>> getMahasiswaList() async {
+  Future<List<MahasiswaAktifModel>> getMahasiswaAktifList() async {
+    try {
+      final response = await _dio.get(
+        'https://jsonplaceholder.typicode.com/posts',
+      );
 
-    await Future.delayed(const Duration(seconds: 1));
-    
-    return [
+      List data = response.data;
 
-      MahasiswaAktifModel(
-        nama: 'Mahasiswa A',
-        nim: '123456789',
-        semester: 5,
-        ipk: 3.5,
-      ),
-
-      MahasiswaAktifModel(
-        nama: 'Mahasiswa B',
-        nim: '987654321',
-        semester: 4,
-        ipk: 3.8,
-      ),
-
-      MahasiswaAktifModel(
-        nama: 'Mahasiswa C',
-        nim: '456789123',
-        semester: 3,
-        ipk: 3.2,
-      ),
-      
-    ];
+      return data.map((e) => MahasiswaAktifModel.fromJson(e)).toList();
+    } catch (e) {
+      throw Exception("Gagal memuat data mahasiswa aktif");
+    }
   }
 }
